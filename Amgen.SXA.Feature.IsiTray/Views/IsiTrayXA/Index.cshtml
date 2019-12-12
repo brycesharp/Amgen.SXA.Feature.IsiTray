@@ -1,0 +1,78 @@
+﻿@using Sitecore.XA.Foundation.Mvc
+@using Sitecore.XA.Foundation.MarkupDecorator.Extensions
+@using Sitecore.XA.Foundation.SitecoreExtensions.Extensions
+@using Amgen.SXA.Feature.IsiTray.Models
+
+@model Amgen.SXA.Feature.IsiTray.Models.IsiTrayXA
+
+    <div @Html.Sxa().Component("IsiTrayXA", Model.Attributes)>
+       
+        <div class="component-content">
+            <section class="component-isi-tray">
+                <article class="isi-tray">
+                    <div id="isi-min">
+                        <div class="isi__button isi__button--open">
+                            <!-- <svg class="icon"><use xlink:href="/icons/close.svg"></use></svg> -->
+                            <span class="isi__button-label">
+                                @if (Sitecore.Context.PageMode.IsExperienceEditorEditing)
+                                {
+                                    @Html.Sitecore().Field(IsiTrayTemplates.IsiReadMoreText.ToString(),
+                                            Model.GetRenderingWebEditingParams())
+                                }
+                                else
+                                {
+                                    @Html.Sitecore().Field(IsiTrayTemplates.IsiReadMoreText.ToString());
+                                }
+                            </span>
+                        </div>
+                        <h3 class="isi__title">
+                            @if (Sitecore.Context.PageMode.IsExperienceEditorEditing)
+                            {
+                                @Html.Sitecore().Field(IsiTrayTemplates.IsiHeading.ToString(),
+                                        Model.GetRenderingWebEditingParams())
+                            }
+                            else
+                            {
+                                @Html.Sitecore().Field(IsiTrayTemplates.IsiHeading.ToString());
+                            }
+                        </h3>
+                        @if (Sitecore.Context.PageMode.IsExperienceEditorEditing)
+                        {
+                            @Html.Sitecore().Field(IsiTrayTemplates.IsiMinimumMarkup.ToString(),
+                                    Model.GetRenderingWebEditingParams())
+                        }
+                        else
+                        {
+                            @Html.Sitecore().Field(IsiTrayTemplates.IsiMinimumMarkup.ToString());
+                        }
+                    </div>
+                    <div id="isi-max">
+                        <div id="isi-waypoint-target" class="isi__button isi__button--close">
+                            <!-- <svg class="icon"><use xlink:href="/icons/close.svg"></use></svg> -->
+                            <span class="isi__button-label">
+                                @if (Sitecore.Context.PageMode.IsExperienceEditorEditing)
+                                {
+                                    @Html.Sitecore().Field(IsiTrayTemplates.IsiReadLessText.ToString(),
+                                            Model.GetRenderingWebEditingParams())
+                                }
+                                else
+                                {
+                                    @Html.Sitecore().Field(IsiTrayTemplates.IsiReadLessText.ToString());
+                                }
+                            </span>
+                        </div>
+                        @if (Sitecore.Context.PageMode.IsExperienceEditorEditing)
+                        {
+                            @Html.Sitecore().Field(IsiTrayTemplates.IsiMaximumMarkup.ToString(),
+                                    Model.GetRenderingWebEditingParams())
+                        }
+                        else
+                        {
+                            @Html.Sitecore().Field(IsiTrayTemplates.IsiMaximumMarkup.ToString());
+                        }
+                    </div>
+                    @Html.Sitecore().Placeholder("reference-matter")
+                </article>
+            </section>
+        </div>
+      </div>
